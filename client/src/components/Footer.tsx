@@ -1,4 +1,4 @@
-import { CTAButton } from './CTAButton';
+
 
 export function Footer() {
   return (

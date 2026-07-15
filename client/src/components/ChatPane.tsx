@@ -62,7 +62,7 @@ export function ChatPane() {
     }
   };
 
-  const theme = getTheme(conversation?.industryKey || persona?.key || null);
+  const theme = getTheme(conversation?.industryKey || null);
 
   if (!conversation || !persona) {
     return (

@@ -4,11 +4,11 @@ import { clsx } from 'clsx';
 import { getTheme } from '../lib/theme';
 
 export function AnalyticsStrip() {
-  const { conversation, lead, persona, industryKey } = useConversationStore();
+  const { conversation, lead, industryKey } = useConversationStore();
 
   if (!conversation) return null;
 
-  const theme = getTheme(industryKey || persona?.key as any);
+  const theme = getTheme(industryKey as any);
 
   const getSentimentEmoji = (sentiment?: string) => {
     switch (sentiment) {

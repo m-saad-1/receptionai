@@ -28,7 +28,7 @@ export function LiveLeadCard() {
     }
   }, [lead]);
 
-  const theme = getTheme(industryKey || persona?.key as any);
+  const theme = getTheme(industryKey as any);
 
   const Field = ({ label, value, icon: Icon, fieldKey }: { label: string, value: string | null | undefined, icon: any, fieldKey: string }) => {
     const hasValue = value !== null && value !== undefined && value !== '';
