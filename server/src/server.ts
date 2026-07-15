@@ -31,13 +31,14 @@ async function startServer() {
         });
       }
     }
-
-    app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
-    });
   } catch (error) {
     console.error('Failed to connect to MongoDB', error);
   }
+
+  // Always start listening so Render health checks pass
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
 }
 
 startServer();
