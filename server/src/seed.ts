@@ -74,18 +74,9 @@ export const personasData = [
   }
 ];
 
-import { MongoMemoryServer } from 'mongodb-memory-server';
-
 async function seed() {
-  let mongoServer: MongoMemoryServer | undefined;
   try {
-    let uri = MONGODB_URI;
-    if (MONGODB_URI.includes('localhost')) {
-      mongoServer = await MongoMemoryServer.create();
-      uri = mongoServer.getUri();
-      console.log('Started in-memory MongoDB at', uri);
-    }
-
+    const uri = MONGODB_URI;
     await mongoose.connect(uri);
     console.log('Connected to MongoDB');
 
@@ -100,9 +91,6 @@ async function seed() {
     console.error('Error seeding data:', error);
   } finally {
     await mongoose.disconnect();
-    if (mongoServer) {
-      await mongoServer.stop();
-    }
     console.log('Disconnected from MongoDB');
   }
 }
@@ -110,6 +98,6 @@ async function seed() {
 // Export for server.ts to call it if needed, or just run it
 export { seed };
 
-if (require.main === module || process.argv[1].includes('seed')) {
+if (require.main === module || process.argv[1]?.includes('seed')) {
   seed();
 }

@@ -9,7 +9,7 @@ import { errorHandler } from './middleware/errorHandler';
 const app = express();
 
 app.use(cors({
-  origin: process.env.CLIENT_ORIGIN || ['http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175'],
+  origin: true, // Allow all origins for the demo
   credentials: true
 }));
 app.use(express.json());

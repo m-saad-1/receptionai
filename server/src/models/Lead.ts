@@ -18,5 +18,20 @@ export interface ILead extends Document {
   updatedAt: Date;
 }
 
-import { LeadMock } from './mock';
-export const Lead = LeadMock as any;
+const LeadSchema: Schema = new Schema({
+  conversationId: { type: Schema.Types.ObjectId, ref: 'Conversation', required: true },
+  industryKey: { type: String, required: true },
+  name: { type: String, default: null },
+  phone: { type: String, default: null },
+  email: { type: String, default: null },
+  requestedService: { type: String, default: null },
+  preferredDateTime: { type: String, default: null },
+  partySize: { type: Number, default: null },
+  notes: { type: String, default: null },
+  intent: { type: String, default: '' },
+  sentiment: { type: String, default: '' },
+  summarySentence: { type: String, default: null },
+  nextActionSuggestion: { type: String, default: null },
+}, { timestamps: true });
+
+export const Lead = mongoose.model<ILead>('Lead', LeadSchema);

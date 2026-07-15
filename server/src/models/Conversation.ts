@@ -9,5 +9,11 @@ export interface IConversation extends Document {
   updatedAt: Date;
 }
 
-import { ConversationModelMock } from './mock';
-export const Conversation = ConversationModelMock as any;
+const ConversationSchema: Schema = new Schema({
+  industryKey: { type: String, required: true },
+  messages: { type: [Schema.Types.Mixed], default: [] },
+  messageCount: { type: Number, default: 0 },
+  detectedIntent: { type: String, default: '' },
+}, { timestamps: true });
+
+export const Conversation = mongoose.model<IConversation>('Conversation', ConversationSchema);

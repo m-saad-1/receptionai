@@ -7,16 +7,31 @@ dotenv.config();
 const PORT = process.env.PORT || 5000;
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/receptionai';
 
-import { MongoMemoryServer } from 'mongodb-memory-server';
 import { BusinessConfig } from './models/BusinessConfig';
 import { personasData } from './seed';
 
-let mongoServer: MongoMemoryServer;
-
 async function startServer() {
   try {
-    console.log('Skipping real MongoDB connection, using in-memory models for demo.');
+    const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/receptionai';
+    await mongoose.connect(mongoUri);
+    console.log('Connected to real MongoDB successfully.');
     
+    // Seed basic data if empty
+    const count = await BusinessConfig.countDocuments();
+    if (count === 0) {
+      console.log('Seeding initial business configs...');
+      for (const [key, data] of Object.entries(personasData)) {
+        await BusinessConfig.create({
+          industryKey: key,
+          businessName: data.businessName,
+          accentColor: data.accentColor,
+          hours: '9 AM - 5 PM',
+          services: [],
+          policies: ''
+        });
+      }
+    }
+
     app.listen(PORT, () => {
       console.log(`Server running on port ${PORT}`);
     });
