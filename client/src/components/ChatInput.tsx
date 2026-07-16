@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Send } from 'lucide-react';
+import { Send, Loader2 } from 'lucide-react';
 import { useConversationStore } from '../store/conversationStore';
 import { useChatStream } from '../hooks/useChatStream';
 
@@ -31,7 +31,11 @@ export function ChatInput() {
           disabled={!input.trim() || isStreaming || demoLimitReached}
           className="absolute right-2 p-2 bg-neutral-900 text-white rounded-full disabled:opacity-50 disabled:bg-neutral-300 hover:bg-neutral-800 transition-colors"
         >
-          <Send size={18} className="ml-0.5" />
+          {isStreaming ? (
+            <Loader2 size={18} className="animate-spin" />
+          ) : (
+            <Send size={18} className="ml-0.5" />
+          )}
         </button>
       </form>
     </div>

@@ -3,7 +3,7 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { IndustrySelector } from '../components/IndustrySelector';
 import { ChatPane } from '../components/ChatPane';
-import { SystemPromptViewer } from '../components/SystemPromptViewer';
+
 import { LiveLeadCard } from '../components/LiveLeadCard';
 import { AnalyticsStrip } from '../components/AnalyticsStrip';
 import { useConversationStore } from '../store/conversationStore';
@@ -62,9 +62,7 @@ export function DemoPage() {
               <div className="shrink-0">
                 <AnalyticsStrip />
               </div>
-              <div className="mt-8 shrink-0">
-                <SystemPromptViewer />
-              </div>
+
             </div>
 
             {/* Business View Pane - Mobile Accordion */}
@@ -98,9 +96,7 @@ export function DemoPage() {
                 <div className="bg-neutral-800 p-1 rounded-xl">
                   <AnalyticsStrip />
                 </div>
-                <div className="mt-4">
-                  <SystemPromptViewer />
-                </div>
+
               </div>
             </div>
 
